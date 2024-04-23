@@ -163,4 +163,16 @@ public class TemplateController {
 		}
 	}
 	
+	@GetMapping("/expressions/{templateName}")
+	public List<String> getExpressionListByTemplateName(@PathVariable String templateName) {		
+		List<String>result = templateService.getExpressionListByTemplateName(templateName);
+		return result;
+	}
+	
+	@GetMapping("/attributes/{templateName}")
+	public List<String> getAttributeListByTemplateName(@PathVariable String templateName) {		
+		List<String>result = templateService.getAttributeListByTemplateName(templateName);
+		return result;
+	}
+	
 }

@@ -27,4 +27,8 @@ public interface TemplateService {
 
 	Long updateAttributes(String tempName,String oldAttributeName, String newAttributeName, String newAttributeType);
 	
+	List<String> getExpressionListByTemplateName(String templateName);
+	
+	List<String> getAttributeListByTemplateName(String templateName);
+	
 }

@@ -120,8 +120,7 @@ public class ObjController {
     	Template template = templateService.findByTemplateName(templateName);
     	MDM_Expressions obj = template.findExpressionByName(expressionName);
     	String expString = obj.getExpressionString();
-    	List<String> result = new ArrayList<>();
-    	
+    	List<String> result = new ArrayList<>();    	
     	String[] words = expString.split("\\s+");
     	List<String> usedTemplates = new ArrayList<>();
     	List<List<Object>> objectList = new ArrayList<>();

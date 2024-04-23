@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Service
-public class TemplateServiceImplementation implements TemplateService {
+public  class TemplateServiceImplementation implements TemplateService {
 
 	@Autowired
 	private TemplateRepository templateRepository;
@@ -168,6 +168,27 @@ public class TemplateServiceImplementation implements TemplateService {
         UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Template.class);
         return updateResult.getModifiedCount();
     }
+
+    @Override
+    public List<String> getExpressionListByTemplateName(String templateName){
+    	Template temp = findByTemplateName(templateName);
+    	List<String> result = new ArrayList<>();
+    	for(MDM_Expressions expression : temp.getExpressionList())
+    		result.add(expression.getName());
+    	return result;
+    }
+
+	@Override
+	public List<String> getAttributeListByTemplateName(String templateName) {
+		// TODO Auto-generated method stub
+		Template template = findByTemplateName(templateName);
+   	List<String> result = new ArrayList<>();
+   	for(Attribute_Template attribute : template.getAttributes()) {    		
+   		result.add(attribute.getAttribute_name());
+    	}
+    	return result;
+	}
+    
 
 
 
