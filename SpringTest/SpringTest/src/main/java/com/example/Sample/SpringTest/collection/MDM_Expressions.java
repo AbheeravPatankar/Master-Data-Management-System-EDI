@@ -6,7 +6,7 @@ import com.example.Sample.SpringTest.service.TemplateService;
 public abstract class MDM_Expressions {
 	protected String name;
 	protected String expressionString;
-
+	protected String type;
 	
 	public String getName() {
 		return name;
@@ -15,6 +15,7 @@ public abstract class MDM_Expressions {
 		this.name = name;
 	}
 	
+	public abstract String getType();
 	
 	public MDM_Expressions(String name, String expressionString) {
 		this.name = name;
@@ -46,6 +47,9 @@ public abstract class MDM_Expressions {
 		return this.expressionString;
 	}
 	
+	public void setExpressionString(String expr) {
+		this.expressionString = expr;
+	}
 	public abstract String evaluate();
 }
 

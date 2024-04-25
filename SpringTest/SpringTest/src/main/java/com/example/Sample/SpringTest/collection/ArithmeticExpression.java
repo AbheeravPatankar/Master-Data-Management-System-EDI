@@ -5,9 +5,13 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class ArithmeticExpression extends MDM_Expressions {
 	
+	public String getType() {
+		return type;
+	}
+
 	public ArithmeticExpression(String name, String expressionString) {
 		super(name, expressionString);
-		
+		type = " Arithmetic";
 	}
 
 	@Override

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 @RestController
@@ -123,25 +124,48 @@ public class ObjController {
     	List<String> result = new ArrayList<>();    	
     	String[] words = expString.split("\\s+");
     	List<String> usedTemplates = new ArrayList<>();
-    	List<List<Object>> objectList = new ArrayList<>();
+    	Map<String,List<Object>> hashMap = new HashMap<>();
+    	List<Object> objects = new ArrayList<>();
+    	int iterations = 0;
     	for(String word : words) {
     		if (word.matches("[a-zA-Z\\.]+")) {
     			int dotIndex = word.indexOf('.');
     			String usedTemplate = word.substring(0, dotIndex);
     			if(!usedTemplates.contains(usedTemplate)) {
     				usedTemplates.add(usedTemplate);
-    				List<Object> objects = oservice.getAllObjectsForTemplate(usedTemplate);
-    				objectList.add(objects);   
+    				objects = oservice.getAllObjectsForTemplate(usedTemplate);
+    				hashMap.put(usedTemplate, objects);   
     			}
     		}
     	}
-    	for(int i = 0; i < objectList.get(0).size() ; i++) {
-    		Map<String, Object> hashMap = new HashMap<>();
-    		for(int j = 0; j < objectList.size(); j++) {
-    			hashMap.put(usedTemplates.get(j),objectList.get(j).get(i));   		
+    	iterations = objects.size();
+    	for(int i = 0; i < iterations; i++) {
+    		Map<String,Object> paramMap = new HashMap<>();
+    		for (Map.Entry<String, List<Object>> entry : hashMap.entrySet()) {
+    		    String key = entry.getKey();
+    		    List<Object> value = entry.getValue();
+    		    paramMap.put(key, value.get(i));
     		}
-    		result.add(obj.replaceVarsInExpressionString(hashMap, templateService).evaluate());
+    		String temp = obj.getExpressionString();
+    		obj = obj.replaceVarsInExpressionString(paramMap, templateService);
+    		if(obj.getType().equals("Conditional")) {
+    			String[] elements = obj.getExpressionString().split("((==)|(!=)|(<=)|(>=)|(<)|(>))");
+    			String expressionString = obj.getExpressionString();  		
+    			for(String word : elements) {
+    				if(word.matches(".*[+\\-*\\/].*")) {
+    					ArithmeticExpression aobj = new ArithmeticExpression("none", word);
+    					String temp_result = aobj.evaluate();
+    					temp_result = temp_result + " ";
+    					expressionString = expressionString.replace(word, temp_result);
+    					obj.setExpressionString(expressionString);
+    				}
+    			}
+    		}
+    		result.add(obj.evaluate());
+    		obj.setExpressionString(temp);
+    		paramMap.clear();
     	}
+    	System.out.println("=================================================================");
     	return result;
     }
 }

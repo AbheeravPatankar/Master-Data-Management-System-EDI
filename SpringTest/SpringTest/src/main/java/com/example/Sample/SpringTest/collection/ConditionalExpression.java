@@ -4,9 +4,13 @@ public class ConditionalExpression extends MDM_Expressions {
 
 	protected String dataType;
 	
+	public String getType() {
+		return type;
+	}
+
 	public ConditionalExpression(String name, String expressionString, String dataType) {
 		super(name, expressionString);
-		
+		type = "Conditional";
 		this.dataType = dataType;
 	}
 
