@@ -155,13 +155,14 @@ public class ObjController {
     				if(word.matches(".*[+\\-*\\/].*")) {
     					ArithmeticExpression aobj = new ArithmeticExpression("none", word);
     					String temp_result = aobj.evaluate();
-    					temp_result = temp_result + " ";
+    					temp_result =" "  + temp_result + " ";
     					expressionString = expressionString.replace(word, temp_result);
     					obj.setExpressionString(expressionString);
     				}
     			}
     		}
-    		result.add(obj.evaluate());
+    		String result2 = obj.evaluate() + "   ->   " + obj.getName();
+    		result.add(result2);
     		obj.setExpressionString(temp);
     		paramMap.clear();
     	}
