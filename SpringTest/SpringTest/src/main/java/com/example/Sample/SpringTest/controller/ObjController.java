@@ -161,7 +161,8 @@ public class ObjController {
     				}
     			}
     		}
-    		String result2 = obj.evaluate() + "   ->   " + obj.getName();
+    		String result2 = "The result for the object with index " + ( i + 1 ) +  " " + obj.evaluate() ;
+    		System.out.println(result2);
     		result.add(result2);
     		obj.setExpressionString(temp);
     		paramMap.clear();
