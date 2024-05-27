@@ -75,7 +75,7 @@ const PayrollCheck = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200 bg-opacity-50 backdrop-filter backdrop-blur-lg" onScroll={handleScroll}>
       <form className="flex flex-col items-center p-10 bg-white rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold mb-6">Payroll Check</h2>
+        <h2 className="text-3xl font-bold mb-6">Evaluation Tab 1</h2>
         <select
           value={selectedTemplate}
           onChange={handleTemplateChange}
@@ -117,7 +117,7 @@ const PayrollCheck = () => {
               <thead>
                 <tr className="bg-gray-200">
                   <th className="px-4 py-2">Expression Name</th>
-                  <th className="px-4 py-2">Employee Id</th>
+                  <th className="px-4 py-2">Row Identifier</th>
                   <th className="px-4 py-2">Evaluation Result</th>
                 </tr>
               </thead>
