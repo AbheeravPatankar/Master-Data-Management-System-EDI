@@ -165,9 +165,9 @@ public class ObjController {
     		for(Map.Entry<String, Object> entry : paramMap.entrySet()) {
     			Object currentObj = entry.getValue();
     			List<Attribute_Object> currentAttrtibutes = currentObj.getAttributes();
-    			objIdentifier = objIdentifier + currentAttrtibutes.get(0).getName();
+    			objIdentifier = objIdentifier + currentAttrtibutes.get(0).getName() + " " + currentAttrtibutes.get(0).getVal().toString();
     		}
-    		String result2 = "The result for the expression: " + obj.getName() + "| "+ objIdentifier + ( 1 + i) + "| " + obj.evaluate();System.out.println(result2);
+    		String result2 = "The result for the expression: " + obj.getName() + "| "+ objIdentifier + " " + "| " + obj.evaluate();System.out.println(result2);
     		result.add(result2);
     		obj.setExpressionString(temp);
     		paramMap.clear();
