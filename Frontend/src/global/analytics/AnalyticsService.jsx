@@ -12,7 +12,7 @@ const AnalyticsService = () => {
           width: '93vw',
           height: '100vh',
         }}
-        src="https://charts.mongodb.com/charts-project-0-ftwth/embed/dashboards?id=1b6a59b1-e468-4e34-ac95-79d862edaea7&theme=light&autoRefresh=true&maxDataAge=60&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"
+        src="https://charts.mongodb.com/charts-project-0-ftwth/embed/dashboards?id=b9649b83-ac8a-40c8-84e4-556eece09887&theme=light&autoRefresh=true&maxDataAge=86400&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"
       ></iframe>
     </div>
   );

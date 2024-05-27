@@ -161,8 +161,13 @@ public class ObjController {
     				}
     			}
     		}
-    		String result2 = "The result for the object with index " + ( i + 1 ) +  " " + obj.evaluate() ;
-    		System.out.println(result2);
+    		String objIdentifier = "";
+    		for(Map.Entry<String, Object> entry : paramMap.entrySet()) {
+    			Object currentObj = entry.getValue();
+    			List<Attribute_Object> currentAttrtibutes = currentObj.getAttributes();
+    			objIdentifier = objIdentifier + currentAttrtibutes.get(0).getName();
+    		}
+    		String result2 = "The result for the expression: " + obj.getName() + "| "+ objIdentifier + ( 1 + i) + "| " + obj.evaluate();System.out.println(result2);
     		result.add(result2);
     		obj.setExpressionString(temp);
     		paramMap.clear();
